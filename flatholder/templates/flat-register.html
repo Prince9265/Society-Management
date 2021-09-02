@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href='{% static "register/fonts/material-icon/css/material-design-iconic-font.min.css"%}'>
+    <link rel="stylesheet" href='{% static "register/vendor/jquery-ui/jquery-ui.min.css"%}'>
+
+    <!-- Main css -->
+    <link rel="stylesheet" href='{% static "register/css/style.css" %}'>
+</head>
+<body>
+<h1><center>Creat Account</center></h1>
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" action="{% url 'flat-register' %}" id="signup-form" class="signup-form">
+                        {% csrf_token %}
+                        {% if msg %}
+                        <h2>{{msg}}</h2>
+                        {% endif %}
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name">First name</label>
+                                <input type="text" class="form-input" name="fname" id="fname" />
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last name</label>
+                                <input type="text" class="form-input" name="lname" id="lname" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group form-icon">
+                                <label for="birth_date">Birth date</label>
+                                <input type="date" class="form-input" name="birth" id="birth" />
+                            </div>
+                            <!-- <div class="form-radio">
+                                <label for="gender">Gender</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="gender" value="male" id="male" checked="checked" />
+                                    <label for="male">Male</label>
+    
+                                    <input type="radio" name="gender" value="female" id="female" />
+                                    <label for="female">Female</label>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-input" name="email" id="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Phone number</label>
+                            <input type="number" class="form-input" name="mobile" id="mobile" />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-input" name="password" id="password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="re_password">Repeat your password</label>
+                                <input type="password" class="form-input" name="cpassword" id="cpassword"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="occupation">Occupation</label>
+                                <input type="text" class="form-input" name="occupation" id='occupation' />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 mb-0">Adress</label>
+                                <div class="col-md-12">
+                                    <textarea name='address' cols="70" rows="5" 
+                                    class="form-control ps-0 form-control-line" required></textarea>
+                                </div>
+                        </div>
+
+
+                        
+                
+                            
+                            <!-- <div class="form-group">
+                                <label for="country">Country</label>
+                                <div class="select-list">
+                                    <select name="country" id="country" required>
+                                        <option value="US">United State</option>
+                                        <option value="UK">English</option>
+                                        <option value="VN">Viet Nam</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <div class="select-list">
+                                    <select name="city" id="city" required>
+                                        <option value="NY">NewYork</option>
+                                        <option value="IC">IceLand</option>
+                                        <option value="canada">Canada</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                        <div class="card-footer text-center py-3">
+                            <div class="small"><a href='{% url "flat-login" %}'>Have an account? Go to login</a></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src='{% static "register/vendor/jquery/jquery.min.js"%}'></script>
+    <script src='{% static "register/vendor/jquery-ui/jquery-ui.min.js"%}'></script>
+    <script src='{% static "register/vendor/jquery-validation/dist/jquery.validate.min.js"%}'></script>
+    <script src='{% static "register/vendor/jquery-validation/dist/additional-methods.min.js"%}'></script>
+    <script src='{% static "register/js/main.js"%}'></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

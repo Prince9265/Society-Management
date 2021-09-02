@@ -1,0 +1,150 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<center><h2>Add Member</h2></center>
+{% if msg %}
+<h4>{{msg}}</h4>
+{% endif %}
+
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <form role='form' class="form-horizontal form-material mx-2" action='{% url "add-member"%}' method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">First Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name='fname' 
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Last Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name='lname' 
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Email</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name='email' 
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Adress</label>
+                                        <div class="col-md-12">
+                                            <textarea name='adress' cols="3" rows="3" 
+                                                class="form-control ps-0 form-control-line" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Occupation</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name='occupation' 
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Birth Date</label>
+                                        <div class="col-md-12">
+                                            <input type="date" name='birth'
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Mobile</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name='mobile'  
+                                                class="form-control ps-0 form-control-line" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Add Picture</label>
+                                        <div class="col-md-12">
+                                            <input type="file" name='pic' 
+                                                class="form-control ps-0 form-control-line" >
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-12 d-flex">
+                                            <input type="submit" class="btn btn-success mx-auto mx-md-0 text-white" value="Add Member" >
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+        
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src='{% static "assets/plugins/jquery/dist/jquery.min.js"%}'></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src='{% static "assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"%}'></script>
+    <script src='{% static "js/app-style-switcher.js"%}'></script>
+    <!--Wave Effects -->
+    <script src='{% static "js/waves.js"%}'></script>
+    <!--Menu sidebar -->
+    <script src='{% static "js/sidebarmenu.js"%}'></script>
+    <!--Custom JavaScript -->
+    <script src='{% static "js/custom.js"%}'></script>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="row">
+                
+<div class="col-lg-4 col-xlg-3">
+<div class="card">
+    {% for event in events %}
+    <h3>- - - - - - - - - - - - - - - - - - -</h3>
+    <h3>---------- Event ----------</h3>
+    {% if event.epic %}
+    <img class="card-img-top"  height="300px" width="1200px" src={{event.epic.url}}
+    alt="Card image cap">
+    {% endif %}
+    <div class="card-body little-profile text-center">
+            <h4>Creator Name : {{event.uid.name}}</h4>
+            <h3>Title : {{event.etitle}}</h3>
+            <h5>Email :{{event.uid.email}}</h5>
+            <p>{{event.edis}}</p>
+            <h3>Date : {{event.edate}}</h3>
+            <a href="{% url 'edit-event' event.id %}"
+            class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Edit</a><br>
+            <a href="{% url 'delete-event' event.id %}"
+            class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Delete</a>
+            
+    </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+
+{% endblock %}
