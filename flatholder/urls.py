@@ -10,4 +10,5 @@ urlpatterns = [
 	path('flat-forgotpass1/',views.flat_forgotpass1,name='flat-forgotpass1'),
 	path('flat-forgotpass2/',views.flat_forgotpass2,name='flat-forgotpass2'),
 	path('flat-forgotpass3/',views.flat_forgotpass3,name='flat-forgotpass3'),
+	path('flat-logout/',views.flat_logout,name='flat-logout'),
 ]

@@ -13,14 +13,6 @@ def flat_login(request):
 	if request.method=='POST':
 		try:
 			uid=Userf.objects.get(email=request.POST['email'])
-			
-			# captcha_list=['ABCDEFGFBFFJFsfnffhbeebfbjhhjpur9865421340']
-			# code=random.choices(captcha_list,k=6)
-			# cimage=ImageCaptcha(width=280,height=90)
-			# data=cimage.generate(code)
-			# captcha_code=cimage.write(code,'demo.png')
-
-
 			if uid.password == request.POST['password']:
 				request.session['femail']=request.POST['email']
 				events=models.Event.objects.all()[::-1]
@@ -60,6 +52,10 @@ def flat_register(request):
 				return render(request,'flat-register.html',{'msg':msg})
 	else:
 		return render(request,'flat-register.html')
+
+def flat_logout(request):
+	del request.session['femail']
+	return render(request,'flat-login.html')
 
 def flat_dashboard(request):
 	return render(request,'dashboard.html')
