@@ -1,0 +1,168 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            {% for user in users %}
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            {% if user.pic %}
+                            <div class="card-body profile-card"> 
+                                <center class="mt-4"> <img src="{{user.pic.url}}"
+                                        class="rounded-circle" width="150" />
+                                    <div class="row text-center justify-content-center">
+                                    
+                                    </div>
+                                </center>
+                            </div>
+                            {% else %}
+                            <div class="card-body profile-card">
+                                <center class="mt-4">
+                                    <label>No Profile Picture</label>
+                                    <div class="row text-center justify-content-center">
+                                    
+                                    </div>
+                                </center>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">First Name</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.fname}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Last Name</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.lname}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.email}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Mobile Number</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.mobile}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Address</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.address}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Birth Date</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.birth}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Occupation</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.occupation}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label >Change To: </label>
+                                    {% if user.role == 'user' %}
+                                        <a href="{% url 'flat-role' user.id %}"> 
+                                            <button class="btn btn-success mx-auto mx-md-0 text-white">
+                                                Member
+                                            </button></a>
+                                    {% else %}
+                                          <a href="{% url 'flat-role' user.id %}"> 
+                                            <button class="btn btn-success mx-auto mx-md-0 text-white">
+                                                Visitor
+                                            </button></a>
+                                    {% endif %}
+                                                                        
+                                    </div>
+                                    
+                                    
+                                    
+                                    <!-- <div class="form-group">
+                                        <div class="col-sm-12 d-flex">
+                                            <input type="submit" id='submit' class="btn btn-success mx-auto mx-md-0 text-white" value="Update Profile">
+                                        </div>
+                                    </div> -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <label>--------------------------------------------------------------------------------------------------------------------------------------</label>
+            {% endfor %}
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+        
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src='{% static "assets/plugins/jquery/dist/jquery.min.js"%}'></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src='{% static "assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"%}'></script>
+    <script src='{% static "js/app-style-switcher.js"%}'></script>
+    <!--Wave Effects -->
+    <script src='{% static "js/waves.js"%}'></script>
+    <!--Menu sidebar -->
+    <script src='{% static "js/sidebarmenu.js"%}'></script>
+    <!--Custom JavaScript -->
+    <script src='{% static "js/custom.js"%}'></script>
+
+{% endblock %}

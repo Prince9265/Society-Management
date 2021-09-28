@@ -25,3 +25,4 @@ class Event(models.Model):
 
     def __str__(self):
         return self.uid.name+" > "+self.etitle
+        

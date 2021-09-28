@@ -4,28 +4,35 @@ from django.conf import settings
 from django.core.mail import send_mail
 from random import randrange
 from .models import *
+from random import randrange,choices
+
+from django.shortcuts import render
+from django.http.response import JsonResponse
+from flatholder import models 
 
 def login(request):
-	if request.method=="POST":
-		email=request.POST['email']
-		
-
-		password=request.POST['password']
-
-		try:
-			uid = User.objects.get(email=request.POST['email'])
-		except:
-			msg="Email is not registered"
-			return render(request,'login.html',{'msg':msg})
-
-		if password == uid.password:
-			request.session['email']=request.POST['email']
-			return render(request,'dashboard.html',{'uid':uid})
-		else:
-			msg='password does not match'
-			return render(request,'login.html',{'msg':msg})
+	if 'email' in request.session:
+		uid=User.objects.get(email=request.session['email'])
+		return render(request,'dashboard.html',{'uid':uid})
 	else:
-		return render(request,'login.html')
+		if request.method=="POST":
+			email=request.POST['email']
+			password=request.POST['password']
+
+			try:
+				uid = User.objects.get(email=request.POST['email'])
+			except:
+				msg="Email is not registered"
+				return render(request,'login.html',{'msg':msg})
+
+			if password == uid.password:
+				request.session['email']=request.POST['email']
+				return render(request,'dashboard.html',{'uid':uid})
+			else:
+				msg='password does not match'
+				return render(request,'login.html',{'msg':msg})
+		else:
+			return render(request,'login.html')
 
 def logout(request):
 	del request.session['email']
@@ -45,6 +52,27 @@ def profile(request):
 			uid.pic=request.FILES['pic']
 		uid.save()
 	return render(request,'profile.html',{'uid':uid})
+
+
+# def profile(request):
+# 	if request.method=='POST':
+# 		uid=User.objects.get(email=request.session['email'])
+		
+# 		uid.mobile=request.POST['mobile'],
+# 		uid.name=request.POST['name'],
+# 		uid.password=request.POST['password'],
+# 		if 'pic' in request.FILES:
+# 			uid.pic=request.FILES['pic'],
+# 		uid.save()
+		
+		
+# 		return JsonResponse({'abc':'Updated'})
+# 	else:
+# 		uid=User.objects.get(email=request.session['email'])
+		
+# 		return render(request,'profile.html',{'uid':uid})
+
+
 
 def register(request):
 	if request.method=='POST':
@@ -199,4 +227,79 @@ def delete_event(request,pk):
 	return render(request,'all-event.html',{'uid':uid,'events':events})
 
 def add_member(request):
-	return render(request,'add-member.html')
+	if request.method == 'POST':
+		try:
+			uid = models.Userf.objects.get(email=request.POST['email'])
+			msg = 'Already Exist'
+			return render(request,'add-member.html',{'msg':msg,'uid':uid})
+		except:
+			s = 'abcdefghijklmn123654789ABCDEFGHIJK'
+			password = ''.join(choices(s,k=8))
+			subject = 'New User Created'
+			message = f"Hey, Your account is created and password is : {password}"
+			email_from = settings.EMAIL_HOST_USER
+			recipient_list = [request.POST['email'],]
+			send_mail( subject, message, email_from, recipient_list )
+			if 'pic' in request.FILES:
+				models.Userf.objects.create(
+				    fname = request.POST['fname'],
+				    lname = request.POST['lname'],
+				    email = request.POST['email'],
+				    mobile = request.POST['mobile'],
+				    password = password,
+				    birth = request.POST['birth'],
+				    address = request.POST['address'],
+				    occupation = request.POST['occupation'],
+				    pic = request.FILES['pic'],
+				)
+			else:
+				models.Userf.objects.create(
+					fname = request.POST['fname'],
+				    lname = request.POST['lname'],
+				    email = request.POST['email'],
+				    mobile = request.POST['mobile'],
+				    password = password,
+				    birth = request.POST['birth'],
+				    address = request.POST['address'],
+				    occupation = request.POST['occupation'],   
+				)
+				msg='User Created'
+				return render(request,'add-member.html',{'msg':msg})
+	else:
+		return render(request,'add-member.html')
+
+
+def all_member(request):
+	users = models.Userf.objects.all()
+	return render(request,'all-member.html',{'users':users})
+
+def flat_role(request,pk):
+	role_id=models.Userf.objects.get(id=pk)
+	users = models.Userf.objects.all()
+	if role_id.role == 'user':
+		role_id.role = 'member'
+		role_id.save()
+		return render(request,'all-member.html',{'users':users})
+	else:
+		role_id.role = 'user'
+		role_id.save()
+		return render(request,'all-member.html',{'users':users})
+
+def view_complain(request):
+	complains=models.Complain.objects.all()
+	return render(request,'view-complain.html',{'complains':complains})
+
+def complain_status(request,pk):
+	complains=models.Complain.objects.all()
+	complain_id=models.Complain.objects.get(id=pk)
+	complain_id.status = 'CLOSE'
+	complain_id.save()
+	return render(request,'view-complain.html',{'complains':complains})
+
+def all_complain(request):
+	complains=models.Complain.objects.all()[::-1]
+	return render(request,'all-complain.html',{'complains':complains})
+
+def sec_maintanance(request):
+	details=models.Transaction.objects.all()
+	return render(request,'sec-maintanance.html',{'details':details})

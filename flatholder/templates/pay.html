@@ -1,0 +1,135 @@
+{% extends 'flat-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <h2>Maintanance Payment</h2>
+                
+                <form class="form-horizontal form-material" method="POST" action="{% url 'flat-pay' %}">
+                    {% csrf_token %}
+                <div class="row">
+                    
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12">Name</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{uid.fname}}{{uid.lname}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{uid.email}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Mobile no</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{uid.mobile}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Address</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{uid.address}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12">Select Month : </label>
+                                        <div class="col-sm-12">
+                                            <select required name="month" class="form-control form-control-line">
+                                                <option>January</option>
+                                                <option>February</option>
+                                                <option>March</option>
+                                                <option>April</option>
+                                                <option>May</option>
+                                                <option>June</option>
+                                                <option>July</option>
+                                                <option>August</option>
+                                                <option>September</option>
+                                                <option>October</option>
+                                                <option>November</option>
+                                                <option>December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12">Select Year : </label>
+                                        <div class="col-sm-12">
+                                            <select required name="year" class="form-control form-control-line">
+                                                <option>2020</option>
+                                                <option>2021</option>
+                                                <option>2022</option>
+                                                <option>2023</option>
+                                                <option>2024</option>
+                                                <option>2025</option>
+                                                <option>2026</option>
+                                                <option>2027</option>
+                                                <option>2028</option>
+                                                <option>2029</option>
+                                                <option>2030</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Maintanance Amount</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >500 ₹</h5> 
+                                            <input type="hidden" name="amount" value="500">   
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="submit" name="pay"  value="Pay" class="btn btn-success">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                </form>
+
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+{% include 'ajax.html' %}
+</html>
+{% endblock %}

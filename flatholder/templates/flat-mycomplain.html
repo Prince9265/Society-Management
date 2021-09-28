@@ -1,0 +1,113 @@
+{% extends 'flat-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <center><h3>My Complain</h3></center>
+                
+                {% for complain in complains %}
+                {% if request.session.femail == complain.uid.email %}
+                <form class="form-horizontal form-material">
+                <div class="row">
+                    <!-- Column -->
+                    {% if complain.cpic %}
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title m-t-10">Complain Picture</h5>
+                                <img class="m-t-30"  height="250px" width="250px" src={{complain.cpic.url}} alt="Card image cap">
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title m-t-10">No Complain Picture</h5>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12">Title</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{complain.title}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Place</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{complain.place}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Discription</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{complain.dis}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Created_on</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{complain.creted_on}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Status</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{complain.status}}</h5>    
+                                        </div>
+                                    </div>
+                                    
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                </form>
+                {% endif %}
+                {% endfor %}
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+{% include 'ajax.html' %}
+</html>
+{% endblock %}

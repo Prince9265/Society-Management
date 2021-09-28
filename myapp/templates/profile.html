@@ -21,18 +21,32 @@
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
+                            {% if uid.pic %}
                             <div class="card-body profile-card">
                                 
                                 <center class="mt-4"> <img src="{{uid.pic.url}}"
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{uid.name}}</h4>
-                                    <input type="file" name="pic" value="{{uid.pic.url}}">
+                                    <input type="file" id="pic" name="pic" value="{{uid.pic.url}}">
                                     
                                     <div class="row text-center justify-content-center">
                                     
                                     </div>
                                 </center>
                             </div>
+                            {% else %}
+                            <div class="card-body profile-card">
+                                
+                                <center class="mt-4">
+                                    <label>No Profile Picture</label>
+                                    <input id="pic" type="file" name="pic" value="{{uid.pic}}">
+                                    
+                                    <div class="row text-center justify-content-center">
+                                    
+                                    </div>
+                                </center>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- Column -->
@@ -44,7 +58,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" name='name' value="{{uid.name}}" 
+                                            <input type="text" id='name' name='name' value="{{uid.name}}" 
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
@@ -57,14 +71,14 @@
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Password</label>
                                         <div class="col-md-12">
-                                            <input type="password" value={{uid.password}} name='password' value={{uid.password}}
+                                            <input type="password" id='password' value={{uid.password}} name='password' value={{uid.password}}
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Mobile</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="mobile" value={{uid.mobile}} placeholder={{uid.mobile}} class="form-control ps-0 form-control-line"
+                                            <input type="text" id="mobile" name="mobile" value={{uid.mobile}} placeholder={{uid.mobile}} class="form-control ps-0 form-control-line"
                                                 >
                                         </div>
                                     </div>
@@ -72,7 +86,7 @@
                                     
                                     <div class="form-group">
                                         <div class="col-sm-12 d-flex">
-                                            <input type="submit" class="btn btn-success mx-auto mx-md-0 text-white" value="Update Profile" name="">
+                                            <input type="submit" id='submit' class="btn btn-success mx-auto mx-md-0 text-white" value="Update Profile">
                                         </div>
                                     </div>
                                 </form>
@@ -124,7 +138,5 @@
     <script src='{% static "js/sidebarmenu.js"%}'></script>
     <!--Custom JavaScript -->
     <script src='{% static "js/custom.js"%}'></script>
-</body>
 
-</html>
 {% endblock %}

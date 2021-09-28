@@ -1,0 +1,151 @@
+{% extends 'flat-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Profile</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Profile</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data" action='{% url "flat-profile" %}'>
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                {% if uid.pic %}
+                                <center class="m-t-30"> <img src="{{uid.pic.url}}" class="img-circle" width="150" />
+                                <input class="m-t-30" type="file" name="pic" value="{{uid.pic.url}}">
+                                {% else %}
+                                <h5 class="card-title m-t-10">No Picture</h5>
+                                <input type="file" name="pic" value="{{uid.pic}}">
+                                {% endif %}
+                                    <h4 class="card-title m-t-10">{{uid.fname}}</h4>
+                                    <!-- <div class="row text-center justify-content-md-center">
+                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                                    </div> -->
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12">First Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id='fname' placeholder="{{uid.fname}}" name="fname" value="{{uid.fname}}" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Last Name</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id='lname' placeholder="{{uid.lname}}" name="lname" value="{{uid.lname}}" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <label>{{uid.email}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Phone No</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="mobile" name="mobile" placeholder="{{uid.mobile}}" value="{{uid.mobile}}" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Birth Date</label>
+                                        <div class="col-md-12">
+                                            <input type="date" id="birth" name="birth" value="{{ubirth}}" placeholder='{{ubirth}}' class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Occupation</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id='occupation' name="occupation" placeholder="{{uid.occupation}}" value="{{uid.occupation}}" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Address</label>
+                                        <div class="col-md-12">
+                                            <textarea name="address" id=address cols="5" rows="10" 
+                                            placeholder="{{uid.address}}" value="{{uid.address}}" class="form-control form-control-line" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Password</label>
+                                        <div class="col-md-12">
+                                            <input type="password" id='password' name="password" value="{{uid.password}}" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- <div class="form-group">
+                                        <label class="col-sm-12">Select Country</label>
+                                        <div class="col-sm-12">
+                                            <select class="form-control form-control-line">
+                                                <option>London</option>
+                                                <option>India</option>
+                                                <option>Usa</option>
+                                                <option>Canada</option>
+                                                <option>Thailand</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="submit" name="submit" id="submit" value="Update Profile" class="btn btn-success">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                </form>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+</html>
+{% endblock %}

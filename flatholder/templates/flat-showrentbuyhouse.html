@@ -1,0 +1,170 @@
+{% extends 'flat-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h1 class="text-themecolor">Rent - Sell House</h>
+                        <ol class="breadcrumb">
+                            
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                
+
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                {% if uid.role == 'member' %}
+                <form class="form-horizontal form-material" method="POST" enctype="multipart/form-data" action='{% url "flat-rentbuyhouse" %}'>
+                {% csrf_token %}
+                {% if msg %}
+                <center><h3>{{msg}}</h3></center>
+                {% endif %}
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h5 class="card-title m-t-10">Add House Picture</h5>
+                                <input type="file" name="rbpic" >
+                
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                    
+                                 <div class="form-group">
+                                        <label class="col-sm-12">Select Type : </label>
+                                        <div class="col-sm-12">
+                                            <select name="rbtype" class="form-control form-control-line">
+                                                <option>Rent House</option>
+                                                <option>Sell House</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                   <div class="form-group">
+                                        <label class="col-md-12">Price</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="rbprice" placeholder="Price"  class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Address</label>
+                                        <div class="col-md-12">
+                                            <textarea name="rbaddress" cols="5" rows="10" class="form-control form-control-line" ></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="submit" name="submit" id="submit" value='Submit' class="btn btn-success">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                </form>
+                {% endif %}
+                {% if uid.role == 'user' %}
+                    {% for house in showhouse %}
+                    <div class="row">
+                        <!-- Column -->
+                        {% if house.rbpic %}
+                        <div class="col-lg-4 col-xlg-3 col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h5 class="card-title m-t-10">House Picture</h5>
+                                    <img src="{{house.rbpic.url}}">
+                    
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-4 col-xlg-3 col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title m-t-10">No House Picture</h5>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <!-- Column -->
+                        <!-- Column -->
+
+                        <div class="col-lg-8 col-xlg-9 col-md-7">
+                            <div class="card">
+                                <!-- Tab panes -->
+                                <div class="card-body">
+                                        
+                                     <div class="form-group">
+                                            <label class="col-sm-12">{{house.rbtype}}</label>
+                                            <div class="col-sm-12">
+                                                
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-md-12">Price </label>
+                                            <div class="col-md-12">
+                                                <h5 class="form-control form-control-line">{{house.rbprice}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Address</label>
+                                            <div class="col-md-12">
+                                                <h5 class="form-control form-control-line">{{house.rbaddress}}</h5>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                    {% endfor %}
+
+                {% endif %}
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+</html>
+{% endblock %}

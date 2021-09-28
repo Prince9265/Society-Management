@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sec/',include('myapp.urls')),
-    path('flat/',include('flatholder.urls')),
+    path('',include('flatholder.urls')),
 ]
 
 if settings.DEBUG:

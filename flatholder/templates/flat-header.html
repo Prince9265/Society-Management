@@ -85,8 +85,9 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="fa fa-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="fa fa-times"></i></a></form>
+                            <form class="app-search" method="POST" action="{% url 'flat-search' %}">
+                                {% csrf_token %}
+                                <input type="text" class="form-control" name="fsearch" placeholder="Search Member Details"> <a class="srh-btn"  ><i class="fa fa-times"></i></a></form>
                         </li>
                     </ul>
                     <div class="text-center">
@@ -100,13 +101,55 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
+                        {% if uid.pic %}
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src='{% static "flat/assets/images/users/1.jpg"%}' alt="user" class="" /> <span class="hidden-md-down">Mark Sanders &nbsp;</span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src='{{uid.pic.url}}' alt="user" class="" /> <span class="hidden-md-down">{{uid.fname}} {{uid.lname}} &nbsp;</span> </a>
                         </li>
+                        {% else %}
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="hidden-md-down">{{uid.fname}} {{uid.lname}} &nbsp;</span> </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
         </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a class="waves-effect waves-dark" href='{% url "flat-dashboard"%}' aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href='{% url "flat-profile"%}' aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a>
+                        </li>
+
+                        {% if uid.role == 'member' %}
+                        <li> <a class="waves-effect waves-dark" href="{% url 'flat-complain' %}" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Complain</span></a>
+                        </li>
+                        <!-- <li> <a class="waves-effect waves-dark" href="{% url 'flat-index' %}" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Complain</span></a>
+                        </li> -->
+                        <li> <a class="waves-effect waves-dark" href="{% url 'flat-mycomplain' %}" aria-expanded="false"><i class="fa fa-address-card-o"></i><span class="hide-menu">My Complain</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'flat-event' %}" ><i class="fa fa-tasks" aria-hidden="true"></i><span class="hide-menu">Events</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'flat-pay' %}" aria-expanded="false"><i class="fa fa-credit-card-alt"></i><span class="hide-menu">Pay Maintanance</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'maintanance' %}" aria-expanded="false"><i class="fas fa-align-center"></i><span class="hide-menu">Maintanance Details</span></a>
+                        
+                        {% endif %}
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'flat-rentbuyhouse' %}" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Rent/Buy House</span></a>
+                        </li>
+                        
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->

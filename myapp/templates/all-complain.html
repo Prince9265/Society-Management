@@ -1,0 +1,158 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            {% for complain in complains %}
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            {% if complain.cpic %}
+                            <div class="card-body profile-card"> 
+                                <center class="mt-4"> <img src="{{complain.cpic.url}}"
+                                        class="rounded-circle" width="150" />
+                                    <div class="row text-center justify-content-center">
+                                    
+                                    </div>
+                                </center>
+                            </div>
+                            {% else %}
+                            <div class="card-body profile-card">
+                                <center class="mt-4">
+                                    <label>No Profile Picture</label>
+                                    <div class="row text-center justify-content-center">
+                                    
+                                    </div>
+                                </center>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Name</label>
+                                        <div class="col-md-12">
+                                            <label>{{complain.uid.fname}}   {{complain.uid.lname}}</label>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Title</label>
+                                        <div class="col-md-12">
+                                            <label>{{complain.title}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Place</label>
+                                        <div class="col-md-12">
+                                            <label>{{complain.place}}</label>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.email}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Mobile Number</label>
+                                        <div class="col-md-12">
+                                            <label>{{user.mobile}}</label>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Discription</label>
+                                        <div class="col-md-12">
+                                            <label>{{complain.dis}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Created_on</label>
+                                        <div class="col-md-12">
+                                            <label>{{complain.creted_on}}</label>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="form-group">
+                                        <label >Complain Status : {{complain.status}}</label>                                    
+                                    </div>
+                                    
+                                    
+                                    
+                                    <!-- <div class="form-group">
+                                        <div class="col-sm-12 d-flex">
+                                            <input type="submit" id='submit' class="btn btn-success mx-auto mx-md-0 text-white" value="Update Profile">
+                                        </div>
+                                    </div> -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <label>--------------------------------------------------------------------------------------------------------------------------------------</label>
+            {% endfor %}
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+        
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src='{% static "assets/plugins/jquery/dist/jquery.min.js"%}'></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src='{% static "assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"%}'></script>
+    <script src='{% static "js/app-style-switcher.js"%}'></script>
+    <!--Wave Effects -->
+    <script src='{% static "js/waves.js"%}'></script>
+    <!--Menu sidebar -->
+    <script src='{% static "js/sidebarmenu.js"%}'></script>
+    <!--Custom JavaScript -->
+    <script src='{% static "js/custom.js"%}'></script>
+
+{% endblock %}

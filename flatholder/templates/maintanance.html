@@ -1,0 +1,92 @@
+{% extends 'flat-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <center><h3>Maintanance Details</h3></center>
+                
+                {% for detail in details %}
+                {% if request.session.femail == detail.made_by.email %}
+                <form class="form-horizontal form-material">
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-12">Name</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{detail.made_by.fname}}{{detail.made_by.lname}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{detail.made_by.email}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Month</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{detail.month}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Year</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{detail.year}}</h5>    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Amount</label>
+                                        <div class="col-md-12">
+                                            <h5 class="form-control form-control-line" >{{detail.amount}}</h5>    
+                                        </div>
+                                    </div>
+                                    
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                </form>
+                {% endif %}
+                {% endfor %}
+           
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+{% include 'ajax.html' %}
+</html>
+{% endblock %}

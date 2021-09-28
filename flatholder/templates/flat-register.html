@@ -30,17 +30,17 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="first_name">First name</label>
-                                <input type="text" class="form-input" name="fname" id="fname" />
+                                <input required type="text" class="form-input" name="fname" id="fname" />
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last name</label>
-                                <input type="text" class="form-input" name="lname" id="lname" />
+                                <input required type="text" class="form-input" name="lname" id="lname" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group form-icon">
                                 <label for="birth_date">Birth date</label>
-                                <input type="date" class="form-input" name="birth" id="birth" />
+                                <input required type="date" class="form-input" name="birth" id="birth" />
                             </div>
                             <!-- <div class="form-radio">
                                 <label for="gender">Gender</label>
@@ -55,28 +55,27 @@
                         </div>
                         <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-input" name="email" id="email"/>
+                                <input required type="email" class="form-input" name="email" id="email"/>
                         </div>
                         <div class="form-group">
                             <label for="phone_number">Phone number</label>
-                            <input type="number" class="form-input" name="mobile" id="mobile" />
+                            <input required type="number" class="form-input" name="mobile" id="mobile" />
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-input" name="password" id="password"/>
+                                <input required type="password" class="form-input" name="password" id="password"/>
                             </div>
                             <div class="form-group">
                                 <label for="re_password">Repeat your password</label>
-                                <input type="password" class="form-input" name="cpassword" id="cpassword"/>
+                                <input required type="password" class="form-input" name="cpassword" id="cpassword"/>
                             </div>
                         </div>
+                        {% if msg1 %}
+                        {{msg1}}
+                        {% endif %}
                         <div class="form-group">
-                                <label for="occupation">Occupation</label>
-                                <input type="text" class="form-input" name="occupation" id='occupation' />
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-12 mb-0">Adress</label>
+                            <label class="col-md-12 mb-0">Address</label>
                                 <div class="col-md-12">
                                     <textarea name='address' cols="70" rows="5" 
                                     class="form-control ps-0 form-control-line" required></textarea>
