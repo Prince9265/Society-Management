@@ -53,27 +53,6 @@ def profile(request):
 		uid.save()
 	return render(request,'profile.html',{'uid':uid})
 
-
-# def profile(request):
-# 	if request.method=='POST':
-# 		uid=User.objects.get(email=request.session['email'])
-		
-# 		uid.mobile=request.POST['mobile'],
-# 		uid.name=request.POST['name'],
-# 		uid.password=request.POST['password'],
-# 		if 'pic' in request.FILES:
-# 			uid.pic=request.FILES['pic'],
-# 		uid.save()
-		
-		
-# 		return JsonResponse({'abc':'Updated'})
-# 	else:
-# 		uid=User.objects.get(email=request.session['email'])
-		
-# 		return render(request,'profile.html',{'uid':uid})
-
-
-
 def register(request):
 	if request.method=='POST':
 		name=request.POST['name']

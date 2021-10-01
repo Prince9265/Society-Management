@@ -1,63 +1,64 @@
-/<!DOCTYPE html>
-{% load static %}
+<!doctype html>
+    {% load static %}
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Password Reset - SB Admin</title>
-        <link href='{% static "css/styles.css" rel="stylesheet" %}' />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+  <head>
+    <title>Login </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href='{% static "login/css/style.css" %}'>
+
     </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Password Recovery</h3></div>
-                                    <div class="card-body">
-                                        <div class="small mb-3 text-muted">Reset Password.</div><br>
-                                        <form role='form' action="{% url 'forgot pass3' %}" method="POST">
-                                            {% csrf_token %}
-                                            {% if msg %}
-                                            <div class="text-center text-muted mb-4">
-                                                <small>{{msg}}</small>
-                                            </div>
-                                            {% endif %}
-                                            <input type="hidden" name="email" value="{{email}}">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" type="password" required name="password"placeholder="New Password" />
-                                                <label for="inputPassword">New Password</label><br>
-                                            </div><br>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" required type="password" name='cpassword' placeholder="Confirm Password" />
-                                                <label for="inputPassword">Confirm Password</label><br><br>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <div class="text-center">
-                                                    <input type="submit" class="btn btn-primary my-4" value="Submit">
-                                                </div><br>
-                                                <a class="small" href='{% url "login" %}'>Return to login</a><br>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href='{% url "register" %}'>Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+    <body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Creat New Password</h2>
+                </div>
             </div>
-            
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <span class="fa fa-user-o"></span>
+                </div>
+                <h3 class="text-center mb-4"></h3>
+                        <form action="{% url 'forgot pass3' %}" method="POST" class="login-form">
+                            {% csrf_token %}
+              {% if msg %}
+              <h4>{{msg}}</h4>
+              {% endif %}
+                                            
+                    <div class="form-group">
+                        <input type="password" name='password' class="form-control rounded-left" placeholder="New Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name='cpassword' class="form-control rounded-left" placeholder="Confirm Password" required>
+                    </div>
+                        <input type="hidden" name="email" value="{{email}}">
+                <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Submit</button>
+                </div>
+                <div class="form-group d-md-flex">
+                                <div class="w-50 text-md-right">
+                                    <a href="{% url 'register' %}">Create Account</a>
+                                </div>
+                </div>
+              </form>
+            </div>
+                </div>
+            </div>
         </div>
-        <script src= "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
-        <script src='{% static "js/scripts.js" %}'></script>
+    </section>
+    <script src='{% static "login/js/jquery.min.js" %}'></script>
+    <script src='{% static "login/js/popper.js" %}'></script>
+    <script src='{% static "login/js/bootstrap.min.js" %}'></script>
+    <script src='{% static "login/js/main.js" %}'></script>
+
     </body>
 </html>
