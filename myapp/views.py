@@ -36,7 +36,7 @@ def login(request):
 
 def logout(request):
 	del request.session['email']
-	return render(request,'login.html')
+	return render(request,'flat-index.html')
 
 def index(request):
 	uid=User.objects.get(email=request.session['email'])
