@@ -8,7 +8,7 @@ from django.http.response import JsonResponse
 import myapp
 from .models import *
 from myapp import models
-from .paytm import generate_checksum, verify_checksum
+# from .paytm import generate_checksum, verify_checksum
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
